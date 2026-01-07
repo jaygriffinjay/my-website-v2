@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Heading, Stack } from '../../components/Primitives';
-import { routes } from '../../routes';
+import { devRoutes } from '../../routes';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -30,8 +30,7 @@ const StyledLink = styled(RouterLink)`
 `;
 
 export function DevLinksPage() {
-  // Show all non-production routes except the dev links page itself
-  const devLinks = routes.filter(route => route.path !== '/dev' && route.path !== '/' && route.path !== '/running');
+  const devLinks = devRoutes.filter(r => r.path !== '/dev');
   
   return (
     <Container>

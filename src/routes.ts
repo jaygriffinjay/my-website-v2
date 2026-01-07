@@ -15,7 +15,8 @@ export interface Route {
   label: string;
 }
 
-export const routes: Route[] = [
+// Production routes
+export const productionRoutes: Route[] = [
   {
     path: '/',
     component: HomePage,
@@ -36,35 +37,36 @@ export const routes: Route[] = [
     component: ProjectsPage,
     label: 'Projects',
   },
-  // Only exists in routes array during dev builds
-  ...(import.meta.env.DEV ? [
-    {
-      path: '/dev',
-      component: DevLinksPage,
-      label: 'Dev Links',
-    },
-    {
-      path: '/theme-editor',
-      component: ThemeEditorPage,
-      label: 'Theme Editor',
-    },
-    {
-      path: '/docs',
-      component: DocsPage,
-      label: 'Documentation',
-    },
-    {
-      path: '/docs/build-log',
-      component: DocsPage2,
-      label: 'Build Log',
-    },
-    {
-      path: '/docs/layout-test',
-      component: DocsPage3,
-      label: 'Layout Components',
-    },
-  ] : []),
 ];
 
-// Returns all routes (already filtered by conditional spread above)
-export const getAvailableRoutes = () => routes;
+// Dev routes - only populated in dev mode
+export const devRoutes: Route[] = import.meta.env.DEV ? [
+  {
+    path: '/dev',
+    component: DevLinksPage,
+    label: 'Dev Links',
+  },
+  {
+    path: '/theme-editor',
+    component: ThemeEditorPage,
+    label: 'Theme Editor',
+  },
+  {
+    path: '/docs',
+    component: DocsPage,
+    label: 'Documentation',
+  },
+  {
+    path: '/docs/build-log',
+    component: DocsPage2,
+    label: 'Build Log',
+  },
+  {
+    path: '/docs/layout-test',
+    component: DocsPage3,
+    label: 'Layout Components',
+  },
+] : [];
+
+// All routes combined
+export const routes: Route[] = [...productionRoutes, ...devRoutes];
