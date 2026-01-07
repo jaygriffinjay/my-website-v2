@@ -29,29 +29,22 @@ const StyledLink = styled(RouterLink)`
   }
 `;
 
-export function HomePage() {
-  // Show only production routes (home and running)
-  const pageLinks = routes.filter(route => route.path === '/running');
-  const devLink = import.meta.env.DEV;
+export function DevLinksPage() {
+  // Show all non-production routes except the dev links page itself
+  const devLinks = routes.filter(route => route.path !== '/dev' && route.path !== '/' && route.path !== '/running');
   
   return (
     <Container>
       <Stack spacing="lg">
-        {pageLinks.length > 0 && (
-          <LinkList>
-            {pageLinks.map(route => (
-              <LinkItem key={route.path}>
-                <StyledLink to={route.path}>{route.label}</StyledLink>
-              </LinkItem>
-            ))}
-          </LinkList>
-        )}
+        <Heading level={1}>Dev Links</Heading>
         
-        {devLink && (
-          <div>
-            <StyledLink to="/dev">Dev Links</StyledLink>
-          </div>
-        )}
+        <LinkList>
+          {devLinks.map(route => (
+            <LinkItem key={route.path}>
+              <StyledLink to={route.path}>{route.label}</StyledLink>
+            </LinkItem>
+          ))}
+        </LinkList>
       </Stack>
     </Container>
   );

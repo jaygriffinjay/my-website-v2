@@ -310,7 +310,7 @@ export const Container = styled.div<{ size?: 'sm' | 'md' | 'lg' | 'xl' | 'full' 
   max-width: ${props => containerSizes[props.size || 'lg']};
   margin-left: auto;
   margin-right: auto;
-  padding: 0 ${props => props.theme.spacing.lg};
+  padding: 0 ${props => props.theme.spacing.xl};
 `;
 
 // ============================================================================

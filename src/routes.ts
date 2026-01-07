@@ -1,15 +1,18 @@
 import type { ComponentType } from 'react';
 import { HomePage } from './pages/Home/HomePage';
+import { AboutPage } from './pages/About/AboutPage';
+import { RunningPage } from './pages/Running/RunningPage';
+import { ProjectsPage } from './pages/Projects/ProjectsPage';
 import { ThemeEditorPage } from './pages/ThemeEditor/ThemeEditorPage';
 import { DocsPage } from './pages/Docs/DocsPage';
 import { DocsPage2 } from './pages/Docs/DocsPage2';
 import { DocsPage3 } from './pages/Docs/DocsPage3';
+import { DevLinksPage } from './pages/Dev/DevLinksPage';
 
 export interface Route {
   path: string;
   component: ComponentType;
   label: string;
-  devOnly?: boolean;
 }
 
 export const routes: Route[] = [
@@ -17,33 +20,48 @@ export const routes: Route[] = [
     path: '/',
     component: HomePage,
     label: 'Home',
-    devOnly: false,
+  },
+  {
+    path: '/about',
+    component: AboutPage,
+    label: 'About',
+  },
+  {
+    path: '/running',
+    component: RunningPage,
+    label: 'Running',
+  },
+  {
+    path: '/projects',
+    component: ProjectsPage,
+    label: 'Projects',
   },
   // Only exists in routes array during dev builds
   ...(import.meta.env.DEV ? [
     {
+      path: '/dev',
+      component: DevLinksPage,
+      label: 'Dev Links',
+    },
+    {
       path: '/theme-editor',
       component: ThemeEditorPage,
       label: 'Theme Editor',
-      devOnly: true,
     },
     {
       path: '/docs',
       component: DocsPage,
       label: 'Documentation',
-      devOnly: true,
     },
     {
       path: '/docs/build-log',
       component: DocsPage2,
       label: 'Build Log',
-      devOnly: true,
     },
     {
       path: '/docs/layout-test',
       component: DocsPage3,
       label: 'Layout Components',
-      devOnly: true,
     },
   ] : []),
 ];
