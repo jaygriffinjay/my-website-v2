@@ -1,6 +1,6 @@
 # jaygriff.com
 
-My personal website built with React, TypeScript, and Vite.
+My personal website built with TypeScript, React, and Vite.
 
 ## License
 
